@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 const crimsonText = Crimson_Text({
   weight: ["400", "600"],
   subsets: ["latin"],
+  fallback: ['Georgia', 'Garamond', 'Palatino', 'Book Antiqua', 'Times New Roman', 'serif'],
 });
 
 export const metadata: Metadata = {
