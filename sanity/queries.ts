@@ -1,5 +1,5 @@
 import { sanityFetch } from "./client";
-import { Person, MyStory } from "./types";
+import { Person, MyStory } from "@/sanity/types";
 
 export async function getAllPeople(): Promise<Person[]> {
   try {

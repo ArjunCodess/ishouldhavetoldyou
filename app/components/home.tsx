@@ -1,4 +1,4 @@
-import { getAllPeople, getMyStory } from "@/lib/sanity/queries";
+import { getAllPeople, getMyStory } from "@/sanity/queries";
 import { HomeClient } from "./home-client";
 
 export default async function Home() {

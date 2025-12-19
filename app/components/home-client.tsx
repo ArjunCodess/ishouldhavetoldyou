@@ -4,7 +4,7 @@ import { useState } from "react";
 import Markdown from "react-markdown";
 import { SearchInput } from "./search-input";
 import { NameList } from "./name-list";
-import type { Person, MyStory } from "@/lib/sanity/types";
+import type { Person, MyStory } from "@/sanity/types";
 
 const markdownComponents = {
   p: ({ children }: React.ComponentPropsWithoutRef<"p">) => (

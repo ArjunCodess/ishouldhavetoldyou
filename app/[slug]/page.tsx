@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Markdown from "react-markdown";
-import { getPersonBySlug } from "@/lib/sanity/queries";
+import { getPersonBySlug } from "@/sanity/queries";
 
 const markdownComponents = {
   p: ({ ...props }: React.ComponentPropsWithoutRef<"p">) => (
