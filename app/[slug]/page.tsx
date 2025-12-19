@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Markdown from "react-markdown";
-import { people } from "../data";
+import { getPersonBySlug } from "@/lib/sanity/queries";
 
 const markdownComponents = {
   p: ({ ...props }: React.ComponentPropsWithoutRef<"p">) => (
@@ -27,7 +27,7 @@ export default async function SlugPage({
 }) {
   const { slug } = await params;
 
-  const person = people.find((p) => p.slug === slug);
+  const person = await getPersonBySlug(slug);
 
   if (!person) {
     return (
