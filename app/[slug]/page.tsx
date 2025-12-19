@@ -2,6 +2,24 @@ import Link from "next/link";
 import Markdown from "react-markdown";
 import { people } from "../data";
 
+const markdownComponents = {
+  p: ({ ...props }: React.ComponentPropsWithoutRef<"p">) => (
+    <p className="mb-4" {...props} />
+  ),
+  strong: ({ ...props }: React.ComponentPropsWithoutRef<"strong">) => (
+    <strong className="font-semibold" {...props} />
+  ),
+  em: ({ ...props }: React.ComponentPropsWithoutRef<"em">) => (
+    <em className="italic" {...props} />
+  ),
+  blockquote: ({ ...props }: React.ComponentPropsWithoutRef<"blockquote">) => (
+    <blockquote
+      className="border-l-4 border-gray-300 pl-4 italic text-gray-600"
+      {...props}
+    />
+  ),
+};
+
 export default async function SlugPage({
   params,
 }: {
@@ -9,8 +27,7 @@ export default async function SlugPage({
 }) {
   const { slug } = await params;
 
-  const personFromData = people.find((p) => p.slug === slug);
-  const person = personFromData || { description: "", letter: "" };
+  const person = people.find((p) => p.slug === slug);
 
   if (!person) {
     return (
@@ -56,23 +73,7 @@ export default async function SlugPage({
         </div>
 
         <div className="mb-20 text-base text-gray-700 leading-relaxed space-y-4">
-          <Markdown
-            components={{
-              p: ({ node, ...props }) => <p className="mb-4" {...props} />,
-              strong: ({ node, ...props }) => (
-                <strong className="font-semibold" {...props} />
-              ),
-              em: ({ node, ...props }) => <em className="italic" {...props} />,
-              blockquote: ({ node, ...props }) => (
-                <blockquote
-                  className="border-l-4 border-gray-300 pl-4 italic text-gray-600"
-                  {...props}
-                />
-              ),
-            }}
-          >
-            {person.letter}
-          </Markdown>
+          <Markdown components={markdownComponents}>{person.letter}</Markdown>
         </div>
 
         <div className="flex-1"></div>
