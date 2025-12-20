@@ -25,13 +25,21 @@ const markdownComponents = {
   ),
 };
 
-function LetterContent({ person }: { person: any }) {
+function LetterContent({
+  person,
+  isReturningUser,
+}: {
+  person: any;
+  isReturningUser: boolean;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const confettiRef = useRef<ConfettiRef>(null);
 
   useEffect(() => {
-    confettiRef.current?.fire({});
-  }, []);
+    if (!isReturningUser) {
+      confettiRef.current?.fire({});
+    }
+  }, [isReturningUser]);
 
   return (
     <main className="min-h-screen bg-white relative overflow-hidden">
@@ -118,18 +126,68 @@ interface GateClientProps {
   person: any;
 }
 
+function generateValidationToken(slug: string, timestamp: number): string {
+  const data = `${slug}:${timestamp}:ishouldhavetoldyou`;
+  let hash = 0;
+  for (let i = 0; i < data.length; i++) {
+    const char = data.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash;
+  }
+  return Math.abs(hash).toString(36);
+}
+
+function isValidationExpired(validatedAt: number): boolean {
+  const now = Date.now();
+  const twentyFourHours = 24 * 60 * 60 * 1000;
+  return now - validatedAt > twentyFourHours;
+}
+
 export function GateClient({ person }: GateClientProps) {
   const [isValidated, setIsValidated] = useState(false);
+  const [isReturningUser, setIsReturningUser] = useState(false);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("access_validation");
+    if (stored) {
+      try {
+        const validation = JSON.parse(stored);
+        if (
+          validation.slug === person.slug &&
+          validation.token ===
+            generateValidationToken(person.slug, validation.validatedAt) &&
+          !isValidationExpired(validation.validatedAt)
+        ) {
+          setIsValidated(true);
+          setIsReturningUser(true);
+        }
+      } catch (error) {
+        localStorage.removeItem("access_validation");
+      }
+    }
+  }, [person.slug]);
+
+  const handleValidCode = () => {
+    const now = Date.now();
+    const validationData = {
+      slug: person.slug,
+      validatedAt: now,
+      token: generateValidationToken(person.slug, now),
+    };
+    localStorage.setItem("access_validation", JSON.stringify(validationData));
+    setIsValidated(true);
+    setIsReturningUser(false);
+  };
 
   if (!isValidated) {
     return (
       <Gate
         slug={person.slug}
         accessCodeHash={person.accessCodeHash}
-        onValidCode={() => setIsValidated(true)}
+        onValidCode={handleValidCode}
       />
     );
   }
 
-  return <LetterContent person={person} />;
+  return <LetterContent person={person} isReturningUser={isReturningUser} />;
 }
