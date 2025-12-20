@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import { getPersonBySlug } from "@/sanity/queries";
@@ -19,6 +20,44 @@ const markdownComponents = {
     />
   ),
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const person = await getPersonBySlug(slug);
+
+  const title = person ? slug : "page not found";
+  const description = person?.description || "a personal archive";
+
+  return {
+    title,
+    description,
+    icons: {
+      icon: "/logo.png",
+    },
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: "/og.png",
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/og.png"],
+    },
+  };
+}
 
 export default async function SlugPage({
   params,
