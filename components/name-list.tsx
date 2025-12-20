@@ -4,7 +4,7 @@ import Link from "next/link";
 export function NameList({ names }: { names: Array<{ slug: string }> }) {
   if (names.length === 0) {
     return (
-      <p className="text-center text-gray-400 lowercase">no names found</p>
+      <p className="text-center text-neutral-400 lowercase">no names found</p>
     );
   }
 
@@ -14,10 +14,10 @@ export function NameList({ names }: { names: Array<{ slug: string }> }) {
         <Link
           key={item.slug}
           href={`/${item.slug}`}
-          className="flex items-center text-lg text-black lowercase hover:text-gray-500 transition-colors duration-200 group"
+          className="flex items-center text-lg text-black lowercase hover:text-neutral-500 transition-colors duration-200 group"
         >
           <span>{item.slug}</span>
-          <hr className="flex-1 ml-4 border-t border-gray-300 group-hover:border-black transition-colors duration-200" />
+          <hr className="flex-1 ml-4 border-t border-neutral-300 group-hover:border-black transition-colors duration-200" />
           <Image
             src="/arrow-right.svg"
             alt="arrow right"

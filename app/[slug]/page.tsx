@@ -16,7 +16,7 @@ const markdownComponents = {
   ),
   blockquote: ({ ...props }: React.ComponentPropsWithoutRef<"blockquote">) => (
     <blockquote
-      className="border-l-4 border-gray-300 pl-4 italic text-gray-600"
+      className="border-l-4 border-neutral-300 pl-4 italic text-neutral-600"
       {...props}
     />
   ),
@@ -75,7 +75,7 @@ export default async function SlugPage({
           <h1 className="text-2xl text-black lowercase mb-4">page not found</h1>
           <Link
             href="/"
-            className="text-sm text-gray-500 hover:text-black transition-colors"
+            className="text-sm text-neutral-500 hover:text-black transition-colors"
           >
             ← back home
           </Link>

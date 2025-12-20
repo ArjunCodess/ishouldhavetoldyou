@@ -19,7 +19,7 @@ const markdownComponents = {
   ),
   blockquote: ({ ...props }: React.ComponentPropsWithoutRef<"blockquote">) => (
     <blockquote
-      className="border-l-4 border-gray-300 pl-4 italic text-gray-600"
+      className="border-l-4 border-neutral-300 pl-4 italic text-neutral-600"
       {...props}
     />
   ),
@@ -87,7 +87,7 @@ function LetterContent({ person }: { person: any }) {
             <div className="w-12 h-px bg-neutral-300 mx-auto mb-8"></div>
           </div>
 
-          <div className="mb-20 text-base text-gray-700 leading-relaxed space-y-4">
+          <div className="mb-20 text-base text-neutral-700 leading-relaxed space-y-4">
             <Markdown components={markdownComponents}>{person.letter}</Markdown>
           </div>
 
