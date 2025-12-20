@@ -72,9 +72,7 @@ export default async function SlugPage({
     return (
       <main className="min-h-screen bg-white flex flex-col items-center justify-center py-16 px-4">
         <div className="text-center">
-          <h1 className="text-2xl text-black lowercase mb-4">
-            page not found
-          </h1>
+          <h1 className="text-2xl text-black lowercase mb-4">page not found</h1>
           <Link
             href="/"
             className="text-sm text-gray-500 hover:text-black transition-colors"
@@ -116,9 +114,18 @@ export default async function SlugPage({
         </div>
 
         <div className="flex-1"></div>
-        <div className="text-center">
-          <p className="text-xs text-gray-400 italic">
-            a chapter of my life.
+
+        <div className="text-center space-y-2">
+          <p className="text-xs text-gray-400 italic">a chapter of my life.</p>
+          <p className="text-xs text-gray-400">
+            last updated{" "}
+            {new Date(person._updatedAt).toLocaleString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              hour: "numeric",
+              minute: "2-digit",
+            })}
           </p>
         </div>
       </div>

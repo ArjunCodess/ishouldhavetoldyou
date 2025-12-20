@@ -24,7 +24,8 @@ export async function getPersonBySlug(slug: string): Promise<Person | null> {
       query: `*[_type == "person" && slug.current == $slug][0] {
         "slug": slug.current,
         description,
-        letter
+        letter,
+        _updatedAt
       }`,
       params: { slug },
       tags: ["person"],
