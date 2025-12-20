@@ -25,6 +25,13 @@ export default defineType({
       type: "text",
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: "accessCodeHash",
+      title: "Access Code Hash",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+      hidden: true,
+    }),
   ],
   preview: {
     select: {
