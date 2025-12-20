@@ -1,6 +1,6 @@
 import { getAllPeople, getMyStory } from "@/sanity/queries";
 import Markdown from "react-markdown";
-import { SearchSection } from "./search-section";
+import { NameList } from "./name-list";
 
 const markdownComponents = {
   p: ({ children }: React.ComponentPropsWithoutRef<"p">) => (
@@ -42,7 +42,9 @@ export default async function Home() {
           </details>
         </div>
 
-        <SearchSection people={people} />
+        <div className="w-full space-y-4 mb-24">
+          <NameList names={people} />
+        </div>
 
         <div className="text-center mt-24">
           <p className="text-xs text-gray-400 italic">

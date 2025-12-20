@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export function NameList({ names }: { names: Array<{ slug: string }> }) {
@@ -13,9 +14,17 @@ export function NameList({ names }: { names: Array<{ slug: string }> }) {
         <Link
           key={item.slug}
           href={`/${item.slug}`}
-          className="block text-lg text-black lowercase hover:text-gray-500 transition-colors duration-200"
+          className="flex items-center text-lg text-black lowercase hover:text-gray-500 transition-colors duration-200 group"
         >
-          {item.slug}
+          <span>{item.slug}</span>
+          <hr className="flex-1 ml-4 border-t border-gray-300 group-hover:border-black transition-colors duration-200" />
+          <Image
+            src="/arrow-right.svg"
+            alt="arrow right"
+            className="ml-3 w-5 h-5 group-hover:opacity-100 opacity-30 transition-all duration-200"
+            width={20}
+            height={20}
+          />
         </Link>
       ))}
     </>
