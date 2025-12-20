@@ -148,6 +148,7 @@ export function GateClient({ person }: GateClientProps) {
   const [isReturningUser, setIsReturningUser] = useState(false);
 
   useEffect(() => {
+    // check localStorage for valid key
     const stored = localStorage.getItem("access_validation");
     if (stored) {
       try {
@@ -167,7 +168,23 @@ export function GateClient({ person }: GateClientProps) {
     }
   }, [person.slug]);
 
-  const handleValidCode = () => {
+  const handleValidCode = async (code: string) => {
+    // mark box as opened in sanity
+    try {
+      await fetch("/api/open-box", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          slug: person.slug,
+          accessCode: code,
+        }),
+      });
+    } catch (error) {
+      // silently fail - box will be marked on next page load
+    }
+
     const now = Date.now();
     const validationData = {
       slug: person.slug,
@@ -179,15 +196,17 @@ export function GateClient({ person }: GateClientProps) {
     setIsReturningUser(false);
   };
 
-  if (!isValidated) {
-    return (
-      <Gate
-        slug={person.slug}
-        accessCodeHash={person.accessCodeHash}
-        onValidCode={handleValidCode}
-      />
-    );
+  // if validated (localStorage key exists), show letter
+  if (isValidated) {
+    return <LetterContent person={person} isReturningUser={isReturningUser} />;
   }
 
-  return <LetterContent person={person} isReturningUser={isReturningUser} />;
+  // otherwise, show gate
+  return (
+    <Gate
+      slug={person.slug}
+      accessCodeHash={person.accessCodeHash}
+      onValidCode={handleValidCode}
+    />
+  );
 }
