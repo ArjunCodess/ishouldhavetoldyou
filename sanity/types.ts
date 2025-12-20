@@ -4,6 +4,7 @@ export interface Person {
   letter: string;
   _updatedAt: string;
   accessCodeHash: string;
+  opened?: boolean;
 }
 
 export interface MyStory {

@@ -32,6 +32,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
       hidden: true,
     }),
+    defineField({
+      name: "opened",
+      title: "Opened",
+      type: "boolean",
+      initialValue: false,
+    }),
   ],
   preview: {
     select: {

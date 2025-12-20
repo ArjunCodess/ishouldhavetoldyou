@@ -7,7 +7,8 @@ export async function getAllPeople(): Promise<Person[]> {
       query: `*[_type == "person"] | order(slug.current asc) {
         "slug": slug.current,
         description,
-        letter
+        letter,
+        opened
       }`,
       tags: ["person"],
     });
@@ -26,7 +27,8 @@ export async function getPersonBySlug(slug: string): Promise<Person | null> {
         description,
         letter,
         _updatedAt,
-        accessCodeHash
+        accessCodeHash,
+        opened
       }`,
       params: { slug },
       tags: ["person"],
