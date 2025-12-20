@@ -39,7 +39,7 @@ function LetterContent({ person }: { person: any }) {
         ref={confettiRef}
         className="absolute top-0 left-0 z-0 size-full"
         options={{
-          particleCount: 500,
+          particleCount: 200,
           spread: 270,
           gravity: 0.5,
           decay: 0.94,
