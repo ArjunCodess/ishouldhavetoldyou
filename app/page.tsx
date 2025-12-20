@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Home from "@/components/home";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "i should have told you",
   description: "a personal archive",

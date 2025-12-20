@@ -21,7 +21,7 @@ export const sanityFetch = cache(
   }): Promise<T> => {
     return client.fetch<T>(query, params, {
       next: {
-        revalidate: 3600,
+        revalidate: 0,
         tags,
       },
     });
