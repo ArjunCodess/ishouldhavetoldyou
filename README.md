@@ -34,3 +34,36 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Access Code Management
+
+This project includes privacy protection for personal letters. Each letter requires a unique access code.
+
+### Setup Environment Variables
+
+1. Copy the example environment file:
+   ```bash
+   cp env-example.txt .env.local
+   ```
+
+2. Fill in your Sanity project details in `.env.local`:
+   - `NEXT_PUBLIC_SANITY_PROJECT_ID`: Your Sanity project ID
+   - `NEXT_PUBLIC_SANITY_DATASET`: Your dataset (usually "production")
+   - `SANITY_API_READ_TOKEN`: Read token for fetching data
+   - `SANITY_API_WRITE_TOKEN`: Write token for updating documents
+
+3. Get your tokens from [Sanity Manage](https://sanity.io/manage)
+
+### Generate Access Codes
+
+To generate random access codes for all existing letters:
+
+```bash
+pnpm generate-codes
+```
+
+This will:
+- Generate a random 8-character access code for each person
+- Hash the code securely using SHA256
+- Update all person documents in Sanity with the hashes
+- Display the plain text codes (save these securely - they cannot be recovered)
