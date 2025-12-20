@@ -7,7 +7,7 @@ import { validateAccessCode } from '@/lib/hash';
 interface GateProps {
   slug: string;
   accessCodeHash: string;
-  onValidCode: () => void;
+  onValidCode: (code: string) => void;
 }
 
 export function Gate({ slug, accessCodeHash, onValidCode }: GateProps) {
@@ -27,9 +27,9 @@ export function Gate({ slug, accessCodeHash, onValidCode }: GateProps) {
     }
 
     if (validateAccessCode(code, accessCodeHash)) {
-      onValidCode();
+      onValidCode(code);
     } else {
-      setError('sorry; this letter wasn\'t meant for you.');
+      setError('sorry; this box wasn\'t meant for you.');
       setCode('');
     }
 

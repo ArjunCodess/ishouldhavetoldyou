@@ -1,6 +1,6 @@
 import { getAllPeople, getMyStory } from "@/sanity/queries";
 import Markdown from "react-markdown";
-import { NameList } from "./name-list";
+import { SealedBoxes } from "./sealed-boxes";
 
 const markdownComponents = {
   p: ({ children }: React.ComponentPropsWithoutRef<"p">) => (
@@ -42,8 +42,8 @@ export default async function Home() {
           </details>
         </div>
 
-        <div className="w-full space-y-4 mb-24">
-          <NameList names={people} />
+        <div className="w-full mb-24">
+          <SealedBoxes people={people} />
         </div>
 
         <div className="text-center mt-24">
