@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import { useState, useRef } from 'react';
-import { Gate } from '@/components/gate';
-import { ScrollProgress } from '@/components/scroll-progress';
-import Link from 'next/link';
-import Markdown from 'react-markdown';
+import { useState, useRef, useEffect } from "react";
+import { Gate } from "@/components/gate";
+import { ScrollProgress } from "@/components/scroll-progress";
+import { Confetti, type ConfettiRef } from "@/components/confetti";
+import Link from "next/link";
+import Markdown from "react-markdown";
 
 const markdownComponents = {
   p: ({ ...props }: React.ComponentPropsWithoutRef<"p">) => (
@@ -26,11 +27,28 @@ const markdownComponents = {
 
 function LetterContent({ person }: { person: any }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const confettiRef = useRef<ConfettiRef>(null);
+
+  useEffect(() => {
+    confettiRef.current?.fire({});
+  }, []);
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white relative overflow-hidden">
+      <Confetti
+        ref={confettiRef}
+        className="absolute top-0 left-0 z-0 size-full"
+        options={{
+          particleCount: 500,
+          spread: 270,
+          gravity: 0.5,
+          decay: 0.94,
+          startVelocity: 20,
+        }}
+        manualstart
+      />
       <div
-        className="h-screen overflow-auto px-4 py-16"
+        className="h-screen overflow-auto px-4 py-16 relative z-10"
         ref={containerRef}
       >
         <div className="pointer-events-none fixed left-0 top-0 w-full z-10">
@@ -76,7 +94,9 @@ function LetterContent({ person }: { person: any }) {
           <div className="flex-1"></div>
 
           <div className="text-center space-y-2 pb-8">
-            <p className="text-xs text-neutral-500 italic">a chapter of my life.</p>
+            <p className="text-xs text-neutral-500 italic">
+              a chapter of my life.
+            </p>
             <p className="text-xs text-neutral-500">
               last updated{" "}
               {new Date(person._updatedAt).toLocaleString("en-US", {
