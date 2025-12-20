@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Gate } from '@/app/components/gate';
+import { Gate } from '@/components/gate';
 import Link from 'next/link';
 import Markdown from 'react-markdown';
 

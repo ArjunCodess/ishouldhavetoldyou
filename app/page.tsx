@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Home from "./components/home";
+import Home from "@/components/home";
 
 export const metadata: Metadata = {
   title: "i should have told you",
