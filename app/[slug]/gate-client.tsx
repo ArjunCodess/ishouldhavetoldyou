@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Gate } from '@/components/gate';
+import { ScrollProgress } from '@/components/scroll-progress';
 import Link from 'next/link';
 import Markdown from 'react-markdown';
 
@@ -24,49 +25,69 @@ const markdownComponents = {
 };
 
 function LetterContent({ person }: { person: any }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   return (
-    <main className="min-h-screen bg-white flex flex-col py-16 px-4">
-      <div className="w-full max-w-xl mx-auto flex flex-col">
-        <div className="flex justify-start mb-8">
-          <Link
-            href="/"
-            className="text-sm text-gray-500 hover:text-black transition-colors"
-          >
-            ← back
-          </Link>
+    <main className="min-h-screen bg-white">
+      <div
+        className="h-screen overflow-auto px-4 py-16"
+        ref={containerRef}
+      >
+        <div className="pointer-events-none fixed left-0 top-0 w-full z-10">
+          <div className="absolute left-0 top-0 h-0.5 w-full bg-neutral-200" />
+          <ScrollProgress
+            className="absolute top-0 h-0.5 bg-[linear-gradient(to_right,rgba(0,0,0,0),#111111_75%,#111111_100%)]"
+            containerRef={containerRef}
+            springOptions={{
+              stiffness: 280,
+              damping: 18,
+              mass: 0.3,
+            }}
+          />
         </div>
 
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-3xl font-normal text-black lowercase mb-4">
-            {person.slug}
-          </h1>
-          {person.description && (
-            <p className="text-base text-gray-600 italic mb-8">
-              {person.description}
+        <div className="w-full max-w-xl mx-auto flex flex-col">
+          <div className="flex justify-start mb-8">
+            <Link
+              href="/"
+              className="text-sm text-neutral-600 hover:text-black transition-colors"
+            >
+              ← back
+            </Link>
+          </div>
+
+          {/* Header */}
+          <div className="text-center mb-12">
+            <h1 className="text-3xl font-normal text-black lowercase mb-4">
+              {person.slug}
+            </h1>
+            {person.description && (
+              <p className="text-base text-neutral-600 italic mb-8">
+                {person.description}
+              </p>
+            )}
+            <div className="w-12 h-px bg-neutral-300 mx-auto mb-8"></div>
+          </div>
+
+          <div className="mb-20 text-base text-gray-700 leading-relaxed space-y-4">
+            <Markdown components={markdownComponents}>{person.letter}</Markdown>
+          </div>
+
+          <div className="flex-1"></div>
+
+          <div className="text-center space-y-2 pb-8">
+            <p className="text-xs text-neutral-500 italic">a chapter of my life.</p>
+            <p className="text-xs text-neutral-500">
+              last updated{" "}
+              {new Date(person._updatedAt).toLocaleString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+              })}
             </p>
-          )}
-          <div className="w-12 h-px bg-gray-300 mx-auto mb-8"></div>
-        </div>
-
-        <div className="mb-20 text-base text-gray-700 leading-relaxed space-y-4">
-          <Markdown components={markdownComponents}>{person.letter}</Markdown>
-        </div>
-
-        <div className="flex-1"></div>
-
-        <div className="text-center space-y-2">
-          <p className="text-xs text-gray-400 italic">a chapter of my life.</p>
-          <p className="text-xs text-gray-400">
-            last updated{" "}
-            {new Date(person._updatedAt).toLocaleString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-              hour: "numeric",
-              minute: "2-digit",
-            })}
-          </p>
+          </div>
         </div>
       </div>
     </main>
