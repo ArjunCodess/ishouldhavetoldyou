@@ -25,7 +25,8 @@ export async function getPersonBySlug(slug: string): Promise<Person | null> {
         "slug": slug.current,
         description,
         letter,
-        _updatedAt
+        _updatedAt,
+        accessCodeHash
       }`,
       params: { slug },
       tags: ["person"],

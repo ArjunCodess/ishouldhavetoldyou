@@ -3,6 +3,7 @@ export interface Person {
   description: string;
   letter: string;
   _updatedAt: string;
+  accessCodeHash: string;
 }
 
 export interface MyStory {
