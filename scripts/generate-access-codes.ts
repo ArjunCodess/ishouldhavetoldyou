@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
 import { createClient } from '@sanity/client';
-import { hashAccessCode } from '../utils/hash.js';
+import { hashAccessCode } from '../lib/hash.js';
 
 config({ path: '.env.local' });
 

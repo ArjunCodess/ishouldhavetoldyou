@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { validateAccessCode } from '@/utils/hash';
+import { validateAccessCode } from '@/lib/hash';
 
 interface GateProps {
   slug: string;
