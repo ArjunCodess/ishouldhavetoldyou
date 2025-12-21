@@ -8,7 +8,7 @@
 ---
 
 <p align="center">
-  A personal archive of letters I never had the courage to send. Each sealed box contains words meant for someone special.
+  A personal archive of letters I never had the courage to send.<br />Each sealed box contains words meant for someone special.
 </p>
 
 <p align="center">
