@@ -46,7 +46,7 @@ export default async function Home() {
           <SealedBoxes people={people} />
         </div>
 
-        <div className="text-center mt-12 sm:mt-24">
+        <div className="text-center">
           <p className="text-xs text-neutral-400 italic">
             i made this because i felt too much and said too little.
           </p>

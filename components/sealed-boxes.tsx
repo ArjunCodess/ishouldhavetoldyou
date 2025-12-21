@@ -24,7 +24,8 @@ export function SealedBoxes({ people }: SealedBoxesProps) {
     <>
       <div className="text-center mb-8 sm:mb-12">
         <p className="text-sm sm:text-base text-neutral-600 italic px-4">
-          some things were kept safe. some things were meant for you.
+          <span className="block sm:inline">some things were kept safe.</span>{" "}
+          <span className="block sm:inline">some things were meant for you.</span>
         </p>
       </div>
 
