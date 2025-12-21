@@ -22,8 +22,8 @@ export function SealedBoxes({ people }: SealedBoxesProps) {
 
   return (
     <>
-      <div className="text-center mb-12">
-        <p className="text-base text-neutral-600 italic">
+      <div className="text-center mb-8 sm:mb-12">
+        <p className="text-sm sm:text-base text-neutral-600 italic px-4">
           some things were kept safe. some things were meant for you.
         </p>
       </div>
@@ -32,7 +32,7 @@ export function SealedBoxes({ people }: SealedBoxesProps) {
         {Array.from({ length: fullRows }).map((_, rowIndex) => (
           <div
             key={rowIndex}
-            className="flex justify-center gap-8 mb-8"
+            className="flex justify-center gap-4 sm:gap-8 mb-6 sm:mb-8"
           >
             {people
               .slice(rowIndex * boxesPerRow, (rowIndex + 1) * boxesPerRow)
@@ -47,7 +47,7 @@ export function SealedBoxes({ people }: SealedBoxesProps) {
         ))}
 
         {remainingBoxes > 0 && (
-          <div className="flex justify-center gap-8">
+          <div className="flex justify-center gap-4 sm:gap-8">
             {people
               .slice(fullRows * boxesPerRow)
               .map((person) => (
@@ -76,7 +76,7 @@ function BoxItem({ person, isOpened }: BoxItemProps) {
         href={`/${person.slug}`}
         className="flex flex-col items-center group cursor-pointer transition-opacity hover:opacity-80"
       >
-        <div className="relative w-32 h-32 mb-3">
+        <div className="relative w-20 h-20 sm:w-32 sm:h-32 mb-2 sm:mb-3">
           <Image
             src="/opened-box.png"
             alt="opened box"
@@ -84,7 +84,7 @@ function BoxItem({ person, isOpened }: BoxItemProps) {
             className="object-contain"
           />
         </div>
-        <p className="text-sm text-black lowercase">{person.slug}</p>
+        <p className="text-xs sm:text-sm text-black lowercase">{person.slug}</p>
       </Link>
     );
   }
@@ -94,7 +94,7 @@ function BoxItem({ person, isOpened }: BoxItemProps) {
       href={`/${person.slug}`}
       className="flex flex-col items-center group cursor-pointer transition-opacity hover:opacity-80"
     >
-      <div className="relative w-32 h-32 mb-3">
+      <div className="relative w-20 h-20 sm:w-32 sm:h-32 mb-2 sm:mb-3">
         <Image
           src="/closed-box.png"
           alt="closed box"
@@ -102,7 +102,7 @@ function BoxItem({ person, isOpened }: BoxItemProps) {
           className="object-contain"
         />
       </div>
-      <p className="text-sm text-black lowercase">{person.slug}</p>
+      <p className="text-xs sm:text-sm text-black lowercase">{person.slug}</p>
     </Link>
   );
 }
