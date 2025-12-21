@@ -159,6 +159,21 @@ export function GateClient({ person }: GateClientProps) {
             generateValidationToken(person.slug, validation.validatedAt) &&
           !isValidationExpired(validation.validatedAt)
         ) {
+          // if localStorage has code but opened = false, mark as opened
+          if (!person.opened && validation.accessCode) {
+            fetch("/api/open-box", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                slug: person.slug,
+                accessCode: validation.accessCode,
+              }),
+            }).catch(() => {
+              // silently fail
+            });
+          }
           setIsValidated(true);
           setIsReturningUser(true);
         }
@@ -166,7 +181,7 @@ export function GateClient({ person }: GateClientProps) {
         localStorage.removeItem("access_validation");
       }
     }
-  }, [person.slug]);
+  }, [person.slug, person.opened]);
 
   const handleValidCode = async (code: string) => {
     // mark box as opened in sanity
@@ -190,6 +205,7 @@ export function GateClient({ person }: GateClientProps) {
       slug: person.slug,
       validatedAt: now,
       token: generateValidationToken(person.slug, now),
+      accessCode: code, // store the code for later use
     };
     localStorage.setItem("access_validation", JSON.stringify(validationData));
     setIsValidated(true);
