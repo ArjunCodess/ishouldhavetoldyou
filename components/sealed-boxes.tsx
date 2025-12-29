@@ -158,7 +158,7 @@ function BoxItem({ person, isOpened }: BoxItemProps) {
         className="flex flex-col items-center group cursor-pointer transition-opacity hover:opacity-90"
       >
         <p className="text-sm text-black lowercase">{person.slug}</p>
-        <div className="relative w-[5.28rem] h-[5.28rem] sm:w-[6.6rem] sm:h-[6.6rem]">
+        <div className="relative w-[5.28rem] h-[5.28rem] sm:w-[6.1rem] sm:h-[6.1rem] mb-0.75">
           <Image
             src="/opened-box.png"
             alt="opened box"
