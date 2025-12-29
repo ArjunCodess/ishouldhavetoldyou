@@ -121,8 +121,8 @@ function RackSection({ rack, people, openedBoxesSet }: RackSectionProps) {
         <div className="absolute inset-x-0 top-0 h-1 bg-amber-700 rounded-t-sm"></div>
 
         {/* Rack Title at the bottom of the shelf */}
-        <div className="absolute inset-0 flex items-end justify-center">
-          <h2 className="text-base font-normal text-amber-100 lowercase opacity-90 pointer-events-none z-10">
+        <div className="absolute inset-0 flex items-end justify-center pb-1">
+          <h2 className="text-sm font-normal text-amber-100 lowercase opacity-90 pointer-events-none z-10">
             {rack.title}
           </h2>
         </div>
@@ -158,7 +158,7 @@ function BoxItem({ person, isOpened }: BoxItemProps) {
         className="flex flex-col items-center group cursor-pointer transition-opacity hover:opacity-90"
       >
         <p className="text-sm text-black lowercase">{person.slug}</p>
-        <div className="relative w-[5.28rem] h-[5.28rem] sm:w-[6.1rem] sm:h-[6.1rem] mb-0.75">
+        <div className="relative w-[4.9rem] h-[4.9rem] sm:w-[6.1rem] sm:h-[6.1rem] mb-0.75">
           <Image
             src="/opened-box.png"
             alt="opened box"
