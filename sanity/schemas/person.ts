@@ -38,6 +38,19 @@ export default defineType({
       type: "boolean",
       initialValue: false,
     }),
+    defineField({
+      name: "rack",
+      title: "Rack",
+      type: "reference",
+      to: [{ type: "rack" }],
+    }),
+    defineField({
+      name: "position",
+      title: "Position",
+      type: "number",
+      validation: (Rule) => Rule.min(1).max(5),
+      initialValue: 1,
+    }),
   ],
   preview: {
     select: {
