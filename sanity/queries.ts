@@ -1,14 +1,20 @@
 import { sanityFetch } from "./client";
-import { Person, MyStory } from "@/sanity/types";
+import { Person, MyStory, Rack } from "@/sanity/types";
 
 export async function getAllPeople(): Promise<Person[]> {
   try {
     const result = await sanityFetch<Person[]>({
-      query: `*[_type == "person"] | order(slug.current asc) {
+      query: `*[_type == "person"] | order(rack._ref asc, position asc, slug.current asc) {
         "slug": slug.current,
         description,
         letter,
-        opened
+        opened,
+        position,
+        rack->{
+          _id,
+          title,
+          description
+        }
       }`,
       tags: ["person"],
     });
@@ -28,7 +34,13 @@ export async function getPersonBySlug(slug: string): Promise<Person | null> {
         letter,
         _updatedAt,
         accessCodeHash,
-        opened
+        opened,
+        position,
+        rack->{
+          _id,
+          title,
+          description
+        }
       }`,
       params: { slug },
       tags: ["person"],
@@ -38,6 +50,23 @@ export async function getPersonBySlug(slug: string): Promise<Person | null> {
   } catch (error) {
     console.error("Error fetching person by slug:", slug, error);
     return null;
+  }
+}
+
+export async function getAllRacks(): Promise<Rack[]> {
+  try {
+    const result = await sanityFetch<Rack[]>({
+      query: `*[_type == "rack"] | order(_createdAt asc) {
+        _id,
+        title,
+        description
+      }`,
+      tags: ["rack"],
+    });
+    return result || [];
+  } catch (error) {
+    console.error("Error fetching racks:", error);
+    return [];
   }
 }
 

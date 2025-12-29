@@ -1,3 +1,8 @@
+export interface Rack {
+  _id: string;
+  title: string;
+}
+
 export interface Person {
   slug: string;
   description: string;
@@ -5,6 +10,8 @@ export interface Person {
   _updatedAt: string;
   accessCodeHash: string;
   opened?: boolean;
+  rack?: Rack;
+  position: number;
 }
 
 export interface MyStory {
