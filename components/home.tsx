@@ -42,7 +42,7 @@ export default async function Home() {
           </details>
         </div>
 
-        <div className="w-full mb-12 sm:mb-24">
+        <div className="w-full mb-50">
           <SealedBoxes people={people} />
         </div>
 

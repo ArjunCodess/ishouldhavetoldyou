@@ -77,9 +77,9 @@ function BoxItem({ person, isOpened }: BoxItemProps) {
     return (
       <Link
         href={`/${person.slug}`}
-        className="flex flex-col items-center group cursor-pointer transition-opacity hover:opacity-90"
+        className="flex flex-col items-center group cursor-pointer"
       >
-        <p className="text-sm text-black lowercase">{person.slug}</p>
+        <p className="text-sm text-black lowercase transition-opacity group-hover:opacity-70">{person.slug}</p>
         <div className="relative w-20 h-20 sm:w-24 sm:h-24 mb-[0.08rem]">
           <Image
             src="/opened-box.svg"
@@ -95,9 +95,9 @@ function BoxItem({ person, isOpened }: BoxItemProps) {
   return (
     <Link
       href={`/${person.slug}`}
-      className="flex flex-col items-center group cursor-pointer transition-opacity hover:opacity-90"
+      className="flex flex-col items-center group cursor-pointer"
     >
-      <p className="text-sm text-black lowercase">{person.slug}</p>
+      <p className="text-sm text-black lowercase transition-opacity group-hover:opacity-70">{person.slug}</p>
       <div className="relative w-20 h-20 sm:w-24 sm:h-24">
         <Image
           src="/closed-box.svg"
