@@ -158,9 +158,9 @@ function BoxItem({ person, isOpened }: BoxItemProps) {
         className="flex flex-col items-center group cursor-pointer transition-opacity hover:opacity-90"
       >
         <p className="text-sm text-black lowercase">{person.slug}</p>
-        <div className="relative w-[4.9rem] h-[4.9rem] sm:w-[6.1rem] sm:h-[6.1rem] mb-0.75">
+        <div className="relative w-20 h-20 sm:w-24 sm:h-24 mb-[0.08rem]">
           <Image
-            src="/opened-box.png"
+            src="/opened-box.svg"
             alt="opened box"
             fill
             className="object-contain"
@@ -176,9 +176,9 @@ function BoxItem({ person, isOpened }: BoxItemProps) {
       className="flex flex-col items-center group cursor-pointer transition-opacity hover:opacity-90"
     >
       <p className="text-sm text-black lowercase">{person.slug}</p>
-      <div className="relative w-[5.28rem] h-[5.28rem] sm:w-[6.6rem] sm:h-[6.6rem]">
+      <div className="relative w-20 h-20 sm:w-24 sm:h-24">
         <Image
-          src="/closed-box.png"
+          src="/closed-box.svg"
           alt="closed box"
           fill
           className="object-contain"
