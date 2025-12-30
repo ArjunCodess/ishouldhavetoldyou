@@ -58,20 +58,20 @@ export function SealedBoxes({ people }: SealedBoxesProps) {
         <div className="absolute inset-0 flex justify-between pointer-events-none h-96">
             {/* Left Pillar - at left edge */}
             <div className="relative w-4">
-              <div className="h-full bg-amber-800 border border-amber-700 rounded-t-sm shadow-md">
-                <div className="absolute inset-0 bg-linear-to-b from-amber-700 to-amber-900 opacity-60"></div>
+              <div className="h-full bg-amber-900 border border-amber-800 rounded-t-sm shadow-md">
+                <div className="absolute inset-0 bg-linear-to-b from-amber-800 to-amber-950 opacity-60"></div>
               </div>
               {/* Pillar base */}
-              <div className="w-6 h-3 bg-amber-800 -ml-1 rounded-b-sm absolute -bottom-3 left-0"></div>
+              <div className="w-6 h-3 bg-amber-900 -ml-1 rounded-b-sm absolute -bottom-3 left-0"></div>
             </div>
 
             {/* Right Pillar - at right edge */}
             <div className="relative w-4">
-              <div className="h-full bg-amber-800 border border-amber-700 rounded-t-sm shadow-md">
-                <div className="absolute inset-0 bg-linear-to-b from-amber-700 to-amber-900 opacity-60"></div>
+              <div className="h-full bg-amber-900 border border-amber-800 rounded-t-sm shadow-md">
+                <div className="absolute inset-0 bg-linear-to-b from-amber-800 to-amber-950 opacity-60"></div>
               </div>
               {/* Pillar base */}
-              <div className="w-6 h-3 bg-amber-800 -mr-1 rounded-b-sm absolute -bottom-3 right-0"></div>
+              <div className="w-6 h-3 bg-amber-900 -mr-1 rounded-b-sm absolute -bottom-3 right-0"></div>
             </div>
           </div>
 
@@ -121,14 +121,18 @@ function RackSection({ rack, people, openedBoxesSet }: RackSectionProps) {
         <div className="absolute inset-x-0 top-0 h-1 bg-amber-700 rounded-t-sm"></div>
 
         {/* Rack Title at the bottom of the shelf */}
-        <div className="absolute inset-0 flex items-end justify-center pb-1">
-          <h2 className="text-sm font-normal text-amber-100 lowercase opacity-90 pointer-events-none z-10">
-            {rack.title}
-          </h2>
+        <div className="absolute inset-0 flex items-end justify-center pb-[0.3rem]">
+          <div className="flex items-center w-full justify-center">
+            <span className="flex-1 h-px bg-amber-600 opacity-70 mr-3" />
+            <h2 className="text-sm font-normal text-amber-100 lowercase opacity-90 pointer-events-none z-10 whitespace-nowrap">
+              {rack.title}
+            </h2>
+            <span className="flex-1 h-px bg-amber-600 opacity-70 ml-3" />
+          </div>
         </div>
 
         {/* Boxes positioned on the rack */}
-        <div className="absolute inset-x-4 sm:inset-x-6 inset-y-0 flex items-end pb-6">
+        <div className="absolute inset-x-4 sm:inset-x-6 inset-y-0 flex items-end pb-7">
           {rackPositions.map((person, index) => (
             <div key={index} className="flex-1 flex justify-center">
               {person && (
